@@ -6,6 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
 }
 
 .card {
@@ -14,6 +15,7 @@ body {
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 10;
 }
 
 h1 {
@@ -48,6 +50,8 @@ button {
 #noBtn {
   background-color: #ccc;
 }
+
+/* 💖 HEARTS */
 #hearts-container {
   position: fixed;
   top: 0;
@@ -55,15 +59,13 @@ button {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 9999;
+  z-index: 1;
 }
 
 .heart {
   position: absolute;
   bottom: -20px;
   animation: floatUp linear forwards;
-  opacity: 0.9;
 }
 
 @keyframes floatUp {
