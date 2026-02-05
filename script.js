@@ -49,8 +49,9 @@ yesBtn.addEventListener("click", () => {
   document.querySelector(".card").innerHTML = `
     <img src="cat-love.gif" style="width:250px;"><br><br>
     <h1>
-      YAAAY 💖<br>
-      I love you forever 💕
+      YAAAY 💖<br><br>
+  That’s my good girl 😊❤️<br><br>
+  I love you forever 💕
     </h1>
   `;
 
