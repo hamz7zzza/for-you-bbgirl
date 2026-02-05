@@ -42,3 +42,9 @@ button {
 #noBtn {
   background-color: #ccc;
 }
+.val-img {
+  width: 200px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
