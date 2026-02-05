@@ -64,3 +64,23 @@ yesBtn.addEventListener("click", () => {
     </div>
   `;
 });
+// 💖 HEART SPAM
+const hearts = ["❤️","💖","💘","💝","💕","💞","💓"];
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 30) + "px";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+  document.getElementById("hearts-container").appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+// spam hearts 🔥
+setInterval(createHeart, 180);
+
