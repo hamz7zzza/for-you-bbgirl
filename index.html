@@ -1,23 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Valentine 💖</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+const params = new URLSearchParams(window.location.search);
+const from = params.get("from") || "your husband";
+const to = params.get("to") || "You bunny ";
 
-  <div class="card">
-    <img src="Cat.png" class="val-img">
-<h1>Will you be my Valentine? 💘</h1>
-    <p id="names"></p>
+document.getElementById("names").innerText =
+  `${from} is asking ${to} 💖`;
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💕</button>
-      <button id="noBtn">No 😢</button>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let yesScale = 1;
+let noScale = 1;
+let noClicks = 0;
+
+// دالة الهروب
+function runAway(btn) {
+  const x = Math.random() * 400 - 200;
+  const y = Math.random() * 300 - 150;
+  btn.style.transform = `translate(${x}px, ${y}px) scale(${noScale})`;
+}
+
+// كليك على NO
+noBtn.addEventListener("click", () => {
+  noClicks++;
+
+  // YES كيكبر كل مرة
+  yesScale += 0.25;
+  yesBtn.style.transform = `scale(${yesScale})`;
+
+  // NO كيهرب
+  runAway(noBtn);
+
+  if (noClicks === 1) {
+    noBtn.innerText = "Are you sure? 😕";
+  } 
+  else if (noClicks === 2) {
+    noBtn.innerText = "You don’t love me? 💔";
+    noScale = 0.7;
+  } 
+  else {
+    noScale = 0.5;
+  }
+});
+
+// YES
+yesBtn.addEventListener("click", () => {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      background:linear-gradient(135deg,#ff4d6d,#ffb3c6);
+      color:white;
+      font-family:'Comic Sans MS', cursive;
+      padding:20px;
+    ">
+      <h1>
+        Good girl 😌❤️<br><br>
+        I love you forever 💕
+      </h1>
     </div>
-  </div>
+  `;
+});
 
-  <script src="script.js"></script>
-</body>
-</html>
