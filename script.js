@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
-const from = params.get("from") || "YOUR husband ";
-const to = params.get("to") || "You BABY ";
+const from = params.get("from") || "your husband";
+const to = params.get("to") || "you bunny";
 
 document.getElementById("names").innerText =
   `${from} is asking ${to} 💖`;
@@ -9,21 +9,41 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
 let yesScale = 1;
+let noScale = 1;
+let noClicks = 0;
 
-// No button كيهرب
-noBtn.addEventListener("mouseenter", () => {
+// دالة الهروب
+function runAway(btn) {
   const x = Math.random() * 400 - 200;
   const y = Math.random() * 300 - 150;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
+  btn.style.transform = `translate(${x}px, ${y}px) scale(${noScale})`;
+}
 
-// Yes كيكبر
-yesBtn.addEventListener("mouseenter", () => {
-  yesScale += 0.1;
+// كليك على NO
+noBtn.addEventListener("click", () => {
+  noClicks++;
+
+  // YES كيكبر كل مرة
+  yesScale += 0.25;
   yesBtn.style.transform = `scale(${yesScale})`;
+
+  // تغييرات NO
+  if (noClicks === 1) {
+    noBtn.innerText = "Are you sure? 😕";
+  } 
+  else if (noClicks === 2) {
+    noBtn.innerText = "You don’t love me? 💔";
+    noScale = 0.7;
+  } 
+  else {
+    noScale = 0.5;
+  }
+
+  // دابا يهــرب
+  runAway(noBtn);
 });
 
-// Click Yes
+// كليك على YES
 yesBtn.addEventListener("click", () => {
   document.body.innerHTML = `
     <div style="
@@ -35,10 +55,11 @@ yesBtn.addEventListener("click", () => {
       background:linear-gradient(135deg,#ff4d6d,#ffb3c6);
       color:white;
       font-family:'Comic Sans MS', cursive;
+      padding:20px;
     ">
       <h1>
         Good girl 😌❤️<br><br>
-        I love you FOREVER 💕
+        I love you forever 💕
       </h1>
     </div>
   `;
