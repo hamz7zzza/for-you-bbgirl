@@ -1,5 +1,5 @@
 const params = new URLSearchParams(window.location.search);
-const from = params.get("from") || "I AM ";
+const from = params.get("from") || "YOUR husband ";
 const to = params.get("to") || "You BABY ";
 
 document.getElementById("names").innerText =
