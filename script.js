@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
-const from = params.get("from") || "Someone";
-const to = params.get("to") || "You";
+const from = params.get("from") || "I AM ";
+const to = params.get("to") || "You BABY ";
 
 document.getElementById("names").innerText =
   `${from} is asking ${to} 💖`;
