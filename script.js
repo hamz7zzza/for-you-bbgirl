@@ -38,7 +38,7 @@ yesBtn.addEventListener("click", () => {
     ">
       <h1>
         Good girl 😌❤️<br><br>
-        I love you 💕
+        I love you FOREVER 💕
       </h1>
     </div>
   `;
