@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
-const from = params.get("from") || "me";
-const to = params.get("to") || "you";
+const from = params.get("from") || "your husband";
+const to = params.get("to") || "you baby girl ";
 
 document.getElementById("names").innerText =
   `${from} is asking ${to} 💖`;
@@ -50,24 +50,22 @@ yesBtn.addEventListener("click", () => {
 
 // PAGE 3 – When you miss me
 function page3() {
-  card.innerHTML = `
-    <h1>When you miss me… 💌</h1>
-    <button id="missBtn">❤️ Tap me</button>
-    <p id="missText"></p>
-    <button id="nextBtn">Next step →</button>
-  `;
-
   const messages = [
-    "I’m thinking about you right now",
-    "Close your eyes… I’m there",
-    "You’re safe with me",
-    "Distance can’t stop what’s real"
+    "I’m thinking about you right now.",
+    "Close your eyes… I’m there.",
+    "You’re safe with me.",
+    "Distance can’t stop what’s real."
   ];
 
-  document.getElementById("missBtn").onclick = () => {
-    document.getElementById("missText").innerText =
-      messages[Math.floor(Math.random()*messages.length)];
-  };
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+
+  card.innerHTML = `
+    <h1>When you miss me… 💌</h1>
+    <p style="font-size:18px; margin:20px 0; color:#555;">
+      ${msg}
+    </p>
+    <button id="nextBtn">Next step →</button>
+  `;
 
   document.getElementById("nextBtn").onclick = page4;
 }
@@ -120,7 +118,10 @@ I hope we meet soon — and when we do, I know it will be worth everything.
 I love your laugh.  
 I love your voice.  
 I love your smile.  
-I love your eyes, your nose, your hair, your hands.  
+I love your eyes, 
+your nose,
+your hair,
+your hands.  
 
 I love you. ❤️
     </div>
@@ -137,6 +138,7 @@ function page6() {
     <h1>
       Distance didn’t stop us.<br>
       And it won’t stop us.
+      i love you so much bunny 
     </h1>
   `;
 }
