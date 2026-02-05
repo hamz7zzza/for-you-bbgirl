@@ -20,12 +20,18 @@ h1 {
   color: #ff4d6d;
 }
 
+.val-img {
+  width: 200px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
 .buttons {
   margin-top: 20px;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 18px;
   border: none;
   border-radius: 12px;
@@ -42,9 +48,3 @@ button {
 #noBtn {
   background-color: #ccc;
 }
-.val-img {
-  width: 200px;
-  border-radius: 20px;
-  margin-bottom: 15px;
-}
-
