@@ -50,26 +50,29 @@ yesBtn.addEventListener("click", () => {
 
 // PAGE 3 – When you miss me
 function page3() {
-  const messages = [
-    "I’m thinking about you right now.",
-    "Close your eyes… I’m there.",
-    "You’re safe with me.",
-    "Distance can’t stop what’s real."
-  ];
-
-  const msg = messages[Math.floor(Math.random() * messages.length)];
-
   card.innerHTML = `
     <h1>When you miss me… 💌</h1>
-    <p style="font-size:18px; margin:20px 0; color:#555;">
-      ${msg}
-    </p>
+
+    <div class="memo">
+      I’m thinking about you right now.<br><br>
+
+      Close your eyes… I’m there.<br><br>
+
+      You’re safe with me.<br><br>
+
+      Distance can’t stop what’s real.<br><br>
+
+      Even when I’m not next to you,
+      my heart never leaves you.<br><br>
+
+      Miss me softly… I’m already missing you.
+    </div>
+
     <button id="nextBtn">Next step →</button>
   `;
 
   document.getElementById("nextBtn").onclick = page4;
 }
-
 // PAGE 4 – 5 clicks heart → memo
 function page4() {
   let clicks = 0;
@@ -131,14 +134,68 @@ I love you. ❤️
 
   document.getElementById("endBtn").onclick = page6;
 }
+// PAGE 7 – If you're still here
+function page7() {
+  card.innerHTML = `
+    <h1>If you’re still here… 🕊️</h1>
 
+    <p style="margin-bottom:20px;color:#666;">
+      That means you didn’t rush.<br>
+      You stayed.
+    </p>
+
+    <button class="choice" data-msg="comfort">I need comfort 🤍</button>
+    <button class="choice" data-msg="love">I need love 💕</button>
+    <button class="choice" data-msg="hope">I need hope ✨</button>
+
+    <div id="choiceResult" class="memo" style="margin-top:20px;display:none;"></div>
+
+    <button id="continueBtn" style="display:none;">Continue →</button>
+  `;
+
+  document.querySelectorAll(".choice").forEach(btn => {
+    btn.onclick = () => {
+      const type = btn.dataset.msg;
+      const box = document.getElementById("choiceResult");
+
+      const texts = {
+        comfort: `
+          I wish I could wrap you in my arms right now.<br><br>
+          You don’t have to be strong all the time.<br>
+          I’m here. You can rest.
+        `,
+        love: `
+          You are deeply loved.<br><br>
+          More than words.<br>
+          More than distance.<br>
+          More than you even realize.
+        `,
+        hope: `
+          Everything we’re waiting for<br>
+          will make sense one day.<br><br>
+          This isn’t the end.<br>
+          It’s just the quiet part.
+        `
+      };
+
+      box.innerHTML = texts[type];
+      box.style.display = "block";
+      document.getElementById("continueBtn").style.display = "block";
+    };
+  });
+
+  document.getElementById("continueBtn").onclick = page6;
+}
 // FINAL
+// PAGE 6
 function page6() {
   card.innerHTML = `
     <h1>
       Distance didn’t stop us.<br>
-      And it won’t stop us.
-      i love you so much bunny 
+      And it won’t stop us.<br><br>
+      I love you so much, bunny 🐰💖
     </h1>
+
+    <button onclick="page7()">One more thing…</button>
   `;
 }
