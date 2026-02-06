@@ -50,7 +50,12 @@ button {
   background-color: #ff4d6d;
   color: white;
 }
-
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  box-shadow: 0 0 15px rgba(255,77,109,0.6);
+  transition: transform 0.2s ease;
+}
 #noBtn {
   background-color: #ccc;
 }
