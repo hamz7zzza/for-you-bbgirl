@@ -11,10 +11,32 @@ const noBtn = document.getElementById("noBtn");
 
 // NO button
 let yesScale = 1;
+let noClicks = 0;
+
 noBtn.addEventListener("click", () => {
-  yesScale += 0.25;
+  noClicks++;
+
+  // YES keeps growing
+  yesScale += 0.3;
   yesBtn.style.transform = `scale(${yesScale})`;
-  noBtn.style.transform = `translate(${Math.random()*300-150}px, ${Math.random()*200-100}px)`;
+
+  // Change NO text
+  if (noClicks === 1) {
+    noBtn.innerText = "Are you sure? 🥺";
+  } else if (noClicks === 2) {
+    noBtn.innerText = "Think again 😭";
+  } else if (noClicks === 3) {
+    noBtn.innerText = "Last chance 💔";
+  } else {
+    noBtn.innerText = "Okay okay 😵";
+  }
+
+  // NO shrinks
+  const scale = Math.max(0.5, 1 - noClicks * 0.1);
+  noBtn.style.transform = `
+    scale(${scale})
+    translate(${Math.random()*300-150}px, ${Math.random()*200-100}px)
+  `;
 });
 
 // HEARTS
