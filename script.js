@@ -15,7 +15,8 @@ let noClicks = 0;
 
 noBtn.addEventListener("click", () => {
   noClicks++;
-
+noBtn.style.animation = "shake 0.3s";
+setTimeout(() => noBtn.style.animation = "", 300);
   // YES keeps growing
   yesScale += 0.3;
   yesBtn.style.transform = `scale(${yesScale})`;
