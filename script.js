@@ -68,9 +68,34 @@ yesBtn.addEventListener("click", () => {
   clearInterval(heartInterval);
   heartInterval = setInterval(createHeart, 90);
 
-  document.getElementById("continueBtn").onclick = page3;
+  document.getElementById("continueBtn").onclick = pageDistance;
 });
+// PAGE – Distance but close (Ukraine)
+function pageDistance() {
+  card.innerHTML = `
+    <h1>Я знаю, що ми далеко… 🤍</h1>
 
+    <div class="memo">
+      Я знаю, що між нами відстань.<br><br>
+
+      Можливо, там холодно.<br>
+      Можливо, інколи ти почуваєшся самотньо.<br><br>
+
+      Але десь далеко…<br>
+      є хтось, хто постійно думає про тебе.<br><br>
+
+      І це я.<br>
+      Я завжди думаю про тебе.<br>
+      Я завжди люблю тебе.<br><br>
+
+      Навіть здалеку — ти в моєму серці.
+    </div>
+
+    <button id="closeBtn">Я поруч 🤍</button>
+  `;
+
+  document.getElementById("closeBtn").onclick = page3; // ولا أي page بغيت
+}
 // PAGE 3 – When you miss me
 function page3() {
   card.innerHTML = `
