@@ -109,34 +109,46 @@ function page3() {
 }
 
 /* ---------- PAGE 4 ---------- */
+// PAGE 4 – Tap heart 5 times (FIXED)
 function page4() {
   let clicks = 0;
+
   card.innerHTML = `
     <h1>Tap the heart 5 times 💖</h1>
-    <div id="bigHeart" style="font-size:70px;cursor:pointer;">❤️</div>
+    <div id="bigHeart" style="font-size:80px;cursor:pointer;">❤️</div>
     <p id="count">0 / 5</p>
   `;
 
-  document.getElementById("bigHeart").onclick = () => {
+  const bigHeart = document.getElementById("bigHeart");
+  const countText = document.getElementById("count");
+
+  bigHeart.addEventListener("click", () => {
     clicks++;
-    document.getElementById("count").innerText = `${clicks} / 5`;
-    if (clicks === 5) page5();
-  };
+    countText.innerText = clicks + " / 5";
+
+    if (clicks >= 5) {
+      page5();
+    }
+  });
 }
 
 /* ---------- PAGE 5 ---------- */
+// PAGE 5 – MEMO (FIXED)
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
+
     <div class="memo">
       I’m proud of you.<br><br>
       I admire your strength.<br><br>
-      I see your effort.<br><br>
-      I’m thankful for you.
+      I see your effort, even when no one does.<br><br>
+      I’m thankful for you, more than you know.
     </div>
+
     <button id="nextBtn">Continue →</button>
   `;
-  document.getElementById("nextBtn").onclick = page6;
+
+  document.getElementById("nextBtn").addEventListener("click", page6);
 }
 
 /* ---------- FINAL ---------- */
