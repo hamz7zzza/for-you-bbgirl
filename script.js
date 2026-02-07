@@ -232,8 +232,7 @@ function page7() {
     };
   });
 
-  document.getElementById("continueBtn").onclick = page6;
-}
+  document.getElementById("endBtn").onclick = pageAppreciation;
 // FINAL
 // PAGE 6
 function page6() {
@@ -247,3 +246,25 @@ function page6() {
     <button onclick="page7()">One more thing…</button>
   `;
 }
+// PAGE – Things I don’t say enough
+function pageAppreciation() {
+  card.innerHTML = `
+    <h1>Things I don’t say enough 🤍</h1>
+
+    <div class="memo">
+      I’m proud of you.<br><br>
+
+      I admire your strength.<br><br>
+
+      I see your effort, even when no one does.<br><br>
+
+      I’m thankful for you, more than you know.
+    </div>
+
+    <button id="continueBtn">Continue →</button>
+  `;
+
+  document.getElementById("continueBtn").onclick = page6;
+}
+  document.body.style.background =
+  "linear-gradient(135deg, #fbc2eb, #a6c1ee)";
