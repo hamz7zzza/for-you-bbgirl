@@ -96,3 +96,11 @@ button {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+.fade {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
