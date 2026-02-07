@@ -268,3 +268,4 @@ function pageAppreciation() {
 }
   document.body.style.background =
   "linear-gradient(135deg, #fbc2eb, #a6c1ee)";
+  card.classList.add("fade");
