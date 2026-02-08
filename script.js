@@ -81,8 +81,16 @@ function page3() {
   card.innerHTML = `
     <h1>When you miss me… 💌</h1>
     <div class="memo">
+           I’m thinking about you right now.<br><br>
+
       Close your eyes… I’m there.<br><br>
-      You’re safe with me.
+
+      You’re safe with me.<br><br>
+
+      Distance can’t stop what’s real.<br><br>
+
+      Even when I’m not next to you,
+      my heart never leaves you.<br><br>
     </div>
     <button id="nextBtn">Next →</button>
   `;
