@@ -15,7 +15,8 @@ let noClicks = 0;
 
 noBtn.addEventListener("click", () => {
   noClicks++;
-  noBtn.style.animation = "shake 0.3s";
+  noBtn.classList.add("shake");
+setTimeout(() => noBtn.classList.remove("shake"), 300);
   setTimeout(() => (noBtn.style.animation = ""), 300);
 
   yesScale += 0.3;
