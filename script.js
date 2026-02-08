@@ -1,4 +1,4 @@
-// Get URL params
+// URL params
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from") || "your husband";
 const to = params.get("to") || "you baby girl";
@@ -110,7 +110,7 @@ function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
     <div class="memo">
- When I meet you I know that a new chapter of my life begins with you 
+    When I meet you I know that a new chapter of my life begins with you 
 I never knew a sweet girl like you 
 I literally love everything about you they way you talk they way you smile the way you looking at me like even if we are talking ft and I m doing something in my phone I saw the way you look at me I love your eyes you face you lips you cheeks even mom call you by “ my cheeks”
 She is always saying are you talking to your cheeks  and even I know sometimes get jealous cuz mom like that 😂😂😂 she always telling that I m gonna love my wife more than her and i always laugh about that cuz I m 27 yo and she never told me to get marry just always asking me to find a girl like you make me happy and love the real who am I cuz she knew about my biggest broken heart happened to me and let back talking about you 
@@ -128,39 +128,23 @@ I love your nose
 I love your head 
 I love your hair 
 I love your hands 
-I love you so much ❤️❤️
+I love you so much ❤️
     </div>
-    <button id="endBtn">Next →</button>
+    <button id="nextBtn">Next →</button>
   `;
-  document.getElementById("endBtn").onclick = page5b;
+  document.getElementById("nextBtn").onclick = pageChoices;
 }
 
-/* PAGE 5B – SHORT MEMO */
-function page5b() {
+/* CHOICE PAGE */
+function pageChoices() {
   card.innerHTML = `
-    <h1>From my heart 🤍</h1>
-    <div class="memo">
-      I love you.<br><br>
-      I choose you.<br><br>
-      Even from far away, you are my home.
-    </div>
-    <button id="nextBtn">Finish →</button>
-  `;
-  document.getElementById("nextBtn").onclick = page6;
-}
-function page6() {
-  card.innerHTML = `
-    <h1>From my heart 🤍</h1>
-    <div class="memo">
-      Choose a message for you today:
-    </div>
+    <h1>Choose a message for today 💌</h1>
     <div class="choices">
       <button class="choice" data-msg="comfort">Comfort 🤗</button>
       <button class="choice" data-msg="love">Love 💖</button>
       <button class="choice" data-msg="hope">Hope 🌟</button>
     </div>
     <div id="choiceResult" style="display:none;" class="memo"></div>
-    <button id="continueBtn" style="display:none;">Finish →</button>
   `;
 
   // Add click events
@@ -191,15 +175,15 @@ function page6() {
 
       box.innerHTML = texts[type];
       box.style.display = "block";
-      document.getElementById("continueBtn").style.display = "block";
+
+      // After user chooses, show final page automatically after short delay
+      setTimeout(pageFinal, 2500);
     };
   });
-
-  // Continue button goes to final page
-  document.getElementById("continueBtn").onclick = page7;
 }
-/* FINAL */
-function page7() {
+
+/* FINAL PAGE */
+function pageFinal() {
   card.innerHTML = `
     <h1>
       Distance didn’t stop us.<br>
