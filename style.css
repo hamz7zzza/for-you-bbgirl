@@ -29,3 +29,18 @@
 .shake {
   animation: shake 0.3s;
 }
+.heart {
+  position: fixed;
+  top: -10px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+}
+
+body {
+  background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
+}
