@@ -106,7 +106,7 @@ function page4() {
   };
 }
 
-// PAGE 5 – MEMO
+// PAGE 5 – LONG MEMO
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
@@ -146,13 +146,13 @@ your hands.
 I love you. ❤️
     </div>
 
-    <button id="endBtn">The end — click here</button>
+    <button id="endBtn">Next →</button>
   `;
-
-  document.getElementById("endBtn").onclick = page6;
-/* PAGE 6 – MEMO */
-function page5() {
-  card.innerHTML = `
+  document.getElementById("endBtn").onclick = page5b; // go to short memo next
+  ;
+// PAGE 5B – SHORT MEMO
+function page5b() {
+  card.innerHTML = ``
     <h1>From my heart 🤍</h1>
     <div class="memo">
       I love you.<br><br>
