@@ -17,7 +17,6 @@ noBtn.addEventListener("click", () => {
   noClicks++;
   noBtn.classList.add("shake");
 setTimeout(() => noBtn.classList.remove("shake"), 300);
-  setTimeout(() => (noBtn.style.animation = ""), 300);
 
   yesScale += 0.3;
   yesBtn.style.transform = `scale(${yesScale})`;
