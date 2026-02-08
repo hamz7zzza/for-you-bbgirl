@@ -1,24 +1,93 @@
+/* ====== BODY & BACKGROUND ====== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* ====== CARD ====== */
+.card {
+  width: 90%;
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ====== IMAGE ====== */
+.val-img {
+  width: 70%;
+  max-width: 260px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* ====== TEXT ====== */
+h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 26px;
+  }
+}
+
+/* ====== BUTTONS CONTAINER ====== */
 .choices {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.choices button {
-  background-color: #ff9aa2;
+@media (min-width: 768px) {
+  .choices {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ====== YES BUTTON ====== */
+#yesBtn {
+  background: linear-gradient(135deg, #ff5f9e, #ff8dc7);
   color: white;
-  border-radius: 12px;
-  padding: 12px;
-  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 22px;
   font-size: 16px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.choices button:hover {
-  transform: scale(1.05);
-  background-color: #ff6b81;
+#yesBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 95, 158, 0.4);
 }
+
+/* ====== NO BUTTON ====== */
+#noBtn {
+  background: #f1f1f1;
+  color: #555;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* ====== SHAKE ANIMATION ====== */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -26,21 +95,15 @@
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
 .shake {
   animation: shake 0.3s;
 }
+
+/* ====== FALLING HEARTS ====== */
 .heart {
   position: fixed;
   top: -10px;
   z-index: 0;
   pointer-events: none;
-}
-
-.card {
-  position: relative;
-  z-index: 2;
-}
-
-body {
-  background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
 }
