@@ -106,7 +106,51 @@ function page4() {
   };
 }
 
-/* PAGE 5 – MEMO */
+// PAGE 5 – MEMO
+function page5() {
+  card.innerHTML = `
+    <h1>From my heart 🤍</h1>
+    <div class="memo">
+When I meet you I know that a new chapter of my life begins with you.<br><br>
+
+I never knew a sweet girl like you.  
+I literally love everything about you — the way you talk, the way you smile, the way you look at me.  
+Even when we’re on FaceTime and I’m busy, I still notice how you look at me.  
+
+I love your eyes, your face, your lips, your cheeks…  
+Even my mom calls you “my cheeks” and gets jealous sometimes 😂  
+
+She always tells me I’m going to love my wife more than her — and I laugh, because she just wants me happy.  
+
+It’s Valentine’s Day.  
+I wish I could give you everything you deserve.  
+For now, this is my way of staying in your heart, even from far away.  
+
+I know there’s a little kid inside you who needs love and care.  
+Even from far, I’m trying my best to give you that.  
+
+I love you so much.  
+You are my world.  
+I’m grateful to have you in my life.  
+
+I hope we meet soon — and when we do, I know it will be worth everything.  
+
+I love your laugh.  
+I love your voice.  
+I love your smile.  
+I love your eyes, 
+your nose,
+your hair,
+your hands.  
+
+I love you. ❤️
+    </div>
+
+    <button id="endBtn">The end — click here</button>
+  `;
+
+  document.getElementById("endBtn").onclick = page6;
+/* PAGE 6 – MEMO */
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
