@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Comic Sans MS', cursive;
- overflow-x: hidden; /* نخلي غير الأفقي مسدود */
+  overflow-x: hidden;
 }
 
 .card {
@@ -17,14 +17,12 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   width: 90%;
   max-width: 360px;
-  max-height: 85vh;       /* مهم */
-  overflow-y: auto;       /* مهم */
+  max-height: 85vh;
+  overflow-y: auto;
   z-index: 10;
 }
 
-h1 {
-  color: #ff4d6d;
-}
+h1 { color: #ff4d6d; }
 
 .val-img {
   width: 100%;
@@ -33,9 +31,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-.buttons {
-  margin-top: 20px;
-}
+.buttons { margin-top: 20px; }
 
 button {
   padding: 12px 24px;
@@ -51,16 +47,11 @@ button {
 #yesBtn {
   background-color: #ff4d6d;
   color: white;
-}
-#yesBtn {
-  background-color: #ff4d6d;
-  color: white;
   box-shadow: 0 0 15px rgba(255,77,109,0.6);
   transition: transform 0.2s ease;
 }
-#noBtn {
-  background-color: #ccc;
-}
+
+#noBtn { background-color: #ccc; }
 
 /* HEARTS */
 #hearts-container {
@@ -81,8 +72,7 @@ button {
   to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* memo style */
-  .memo {
+.memo {
   font-family: 'Georgia', cursive;
   font-size: 16px;
   line-height: 1.7;
@@ -95,6 +85,7 @@ button {
   border-radius: 10px;
   margin-top: 15px;
 }
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -102,9 +93,8 @@ button {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
-.fade {
-  animation: fadeIn 0.8s ease;
-}
+
+.fade { animation: fadeIn 0.8s ease; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -117,8 +107,8 @@ button {
   left: 50%;
   transform: translateX(-50%);
   animation: beat 1s infinite;
-  z-index: 0;           /* تحت card */
-  pointer-events: none; /* ما تحبسش الكليك */
+  z-index: 0;
+  pointer-events: none;
 }
 
 @keyframes beat {
