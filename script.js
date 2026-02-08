@@ -148,9 +148,58 @@ function page5b() {
   `;
   document.getElementById("nextBtn").onclick = page6;
 }
-
-/* FINAL */
 function page6() {
+  card.innerHTML = `
+    <h1>From my heart 🤍</h1>
+    <div class="memo">
+      Choose a message for you today:
+    </div>
+    <div class="choices">
+      <button class="choice" data-msg="comfort">Comfort 🤗</button>
+      <button class="choice" data-msg="love">Love 💖</button>
+      <button class="choice" data-msg="hope">Hope 🌟</button>
+    </div>
+    <div id="choiceResult" style="display:none;" class="memo"></div>
+    <button id="continueBtn" style="display:none;">Finish →</button>
+  `;
+
+  // Add click events
+  document.querySelectorAll(".choice").forEach(btn => {
+    btn.onclick = () => {
+      const type = btn.dataset.msg;
+      const box = document.getElementById("choiceResult");
+
+      const texts = {
+        comfort: `
+          I wish I could wrap you in my arms right now.<br><br>
+          You don’t have to be strong all the time.<br>
+          I’m here. You can rest.
+        `,
+        love: `
+          You are deeply loved.<br><br>
+          More than words.<br>
+          More than distance.<br>
+          More than you even realize.
+        `,
+        hope: `
+          Everything we’re waiting for<br>
+          will make sense one day.<br><br>
+          This isn’t the end.<br>
+          It’s just the quiet part.
+        `
+      };
+
+      box.innerHTML = texts[type];
+      box.style.display = "block";
+      document.getElementById("continueBtn").style.display = "block";
+    };
+  });
+
+  // Continue button goes to final page
+  document.getElementById("continueBtn").onclick = page7;
+}
+/* FINAL */
+function page7() {
   card.innerHTML = `
     <h1>
       Distance didn’t stop us.<br>
