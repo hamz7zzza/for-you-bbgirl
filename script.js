@@ -1,9 +1,9 @@
+// Get URL params
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from") || "your husband";
 const to = params.get("to") || "you baby girl";
 
-document.getElementById("names").innerText =
-  `${from} is asking ${to} 💖`;
+document.getElementById("names").innerText = `${from} is asking ${to} 💖`;
 
 const card = document.getElementById("card");
 const yesBtn = document.getElementById("yesBtn");
@@ -15,7 +15,6 @@ let noClicks = 0;
 
 noBtn.addEventListener("click", () => {
   noClicks++;
-
   noBtn.style.animation = "shake 0.3s";
   setTimeout(() => (noBtn.style.animation = ""), 300);
 
@@ -106,53 +105,39 @@ function page4() {
   };
 }
 
-// PAGE 5 – LONG MEMO
+/* PAGE 5 – LONG MEMO */
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
     <div class="memo">
-When I meet you I know that a new chapter of my life begins with you.<br><br>
-
-I never knew a sweet girl like you.  
-I literally love everything about you — the way you talk, the way you smile, the way you look at me.  
-Even when we’re on FaceTime and I’m busy, I still notice how you look at me.  
-
-I love your eyes, your face, your lips, your cheeks…  
-Even my mom calls you “my cheeks” and gets jealous sometimes 😂  
-
-She always tells me I’m going to love my wife more than her — and I laugh, because she just wants me happy.  
-
-It’s Valentine’s Day.  
-I wish I could give you everything you deserve.  
-For now, this is my way of staying in your heart, even from far away.  
-
-I know there’s a little kid inside you who needs love and care.  
-Even from far, I’m trying my best to give you that.  
-
-I love you so much.  
-You are my world.  
-I’m grateful to have you in my life.  
-
-I hope we meet soon — and when we do, I know it will be worth everything.  
-
-I love your laugh.  
-I love your voice.  
-I love your smile.  
-I love your eyes, 
-your nose,
-your hair,
-your hands.  
-
-I love you. ❤️
+ When I meet you I know that a new chapter of my life begins with you 
+I never knew a sweet girl like you 
+I literally love everything about you they way you talk they way you smile the way you looking at me like even if we are talking ft and I m doing something in my phone I saw the way you look at me I love your eyes you face you lips you cheeks even mom call you by “ my cheeks”
+She is always saying are you talking to your cheeks  and even I know sometimes get jealous cuz mom like that 😂😂😂 she always telling that I m gonna love my wife more than her and i always laugh about that cuz I m 27 yo and she never told me to get marry just always asking me to find a girl like you make me happy and love the real who am I cuz she knew about my biggest broken heart happened to me and let back talking about you 
+It a valentine day I want honestly to buy something cuz you deserve everything but low budget but I m gonna do it later ofc you need something that keep me in your mind ( even I know I m always there but …)  and yes I always knew there is a little kid inside you need love and caring i honestly trying to take care of you even I m far away 
+I love you so much more than anything 
+You are the world to me 
+I m happy cuz I have you in my life and loving me 
+I hope me meet soon and also I wish that we meet sooner maybe it gonna more perfect than that but it’s good now everything going well 
+And I wish make you more happy and laugh more 
+Cuz I love to see your laugh and hear it 
+I love your voice 
+I love your  smile 
+I love your eyes 
+I love your nose 
+I love your head 
+I love your hair 
+I love your hands 
+I love you so much ❤️❤️
     </div>
-
     <button id="endBtn">Next →</button>
   `;
-  document.getElementById("endBtn").onclick = page5b; // go to short memo next
-  ;
-// PAGE 5B – SHORT MEMO
+  document.getElementById("endBtn").onclick = page5b;
+}
+
+/* PAGE 5B – SHORT MEMO */
 function page5b() {
-  card.innerHTML = ``
+  card.innerHTML = `
     <h1>From my heart 🤍</h1>
     <div class="memo">
       I love you.<br><br>
