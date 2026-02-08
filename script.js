@@ -34,18 +34,19 @@ setTimeout(() => noBtn.classList.remove("shake"), 300);
 });
 
 /* HEARTS */
-const hearts = ["❤️","💖","💘","💝","💕","💞","💓"];
+const hearts = ["💖","🌸","💕","🌹"];
 function createHeart() {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
   h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (16 + Math.random() * 24) + "px";
-  h.style.animationDuration = (3 + Math.random() * 3) + "s";
+  h.style.fontSize = (14 + Math.random() * 12) + "px";
+  h.style.animationDuration = (7 + Math.random() * 4) + "s";
+  h.style.opacity = "0.8";
   document.getElementById("hearts-container").appendChild(h);
-  setTimeout(() => h.remove(), 6000);
+  setTimeout(() => h.remove(), 10000);
 }
-let heartInterval = setInterval(createHeart, 180);
+let heartInterval = setInterval(createHeart, 450);
 
 /* PAGE 2 */
 yesBtn.addEventListener("click", () => {
