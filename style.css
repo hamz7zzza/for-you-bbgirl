@@ -76,7 +76,8 @@ button {
 .fall {
   position: absolute;
   top: -40px;
-  animation: fall linear infinite;
+  animation-name: fall;
+  animation-timing-function: linear;
 }
 
 @keyframes fall {
