@@ -1,4 +1,4 @@
-/* ====== BODY & BACKGROUND ====== */
+/* ===== BODY ===== */
 body {
   margin: 0;
   padding: 0;
@@ -10,8 +10,10 @@ body {
   min-height: 100vh;
 }
 
-/* ====== CARD ====== */
+/* ===== CARD ===== */
 .card {
+  position: relative;
+  z-index: 5;
   width: 90%;
   max-width: 420px;
   margin: 40px auto;
@@ -22,52 +24,45 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* ====== IMAGE ====== */
+/* ===== IMAGE ===== */
 .val-img {
   width: 70%;
   max-width: 260px;
-  height: auto;
   margin-bottom: 15px;
 }
 
-/* ====== TEXT ====== */
+/* ===== TEXT ===== */
 h1 {
   font-size: 22px;
-  margin-bottom: 10px;
 }
 
-@media (min-width: 768px) {
-  h1 {
-    font-size: 26px;
-  }
+.memo {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 10px;
 }
 
-/* ====== BUTTONS CONTAINER ====== */
-.choices {
-  margin-top: 15px;
+/* ===== BUTTONS ===== */
+.buttons {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
 }
 
-@media (min-width: 768px) {
-  .choices {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
-/* ====== YES BUTTON ====== */
-#yesBtn {
-  background: linear-gradient(135deg, #ff5f9e, #ff8dc7);
-  color: white;
+button {
   border: none;
   border-radius: 30px;
   padding: 12px 22px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg, #ff5f9e, #ff8dc7);
+  color: white;
+  font-weight: bold;
 }
 
 #yesBtn:hover {
@@ -75,19 +70,12 @@ h1 {
   box-shadow: 0 8px 20px rgba(255, 95, 158, 0.4);
 }
 
-/* ====== NO BUTTON ====== */
 #noBtn {
-  background: #f1f1f1;
+  background: #eee;
   color: #555;
-  border: none;
-  border-radius: 30px;
-  padding: 12px 22px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-/* ====== SHAKE ANIMATION ====== */
+/* ===== SHAKE ===== */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -95,18 +83,11 @@ h1 {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
-
 .shake {
   animation: shake 0.3s;
 }
 
-/* ====== FALLING HEARTS ====== */
-.heart {
-  position: fixed;
-  top: -10px;
-  z-index: 0;
-  pointer-events: none;
-}
+/* ===== FALLING HEARTS ===== */
 .falling-container {
   position: fixed;
   top: 0;
@@ -115,22 +96,31 @@ h1 {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 1;
 }
 
 .fall {
   position: absolute;
-  top: -50px;
-  font-size: 24px;
-  animation: fall linear infinite;
+  top: -40px;
   opacity: 0.8;
+  animation: fall linear infinite;
 }
 
 @keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-  }
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* ===== CHOICES ===== */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.choice {
+  background: #ffe4ee;
+  border-radius: 20px;
+  padding: 10px;
 }
