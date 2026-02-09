@@ -24,6 +24,7 @@ body {
 .val-img {
   width: 70%;
   max-width: 250px;
+  margin-bottom: 15px;
 }
 
 .memo {
@@ -32,26 +33,41 @@ body {
   margin-top: 10px;
 }
 
-.buttons {
+.center {
+  text-align: center;
+}
+
+.buttons, .choices {
   display: flex;
   gap: 15px;
   justify-content: center;
+  margin-top: 15px;
+  flex-direction: column;
 }
 
-button {
+button, .btn, .choice {
   border: none;
   border-radius: 30px;
   padding: 12px 22px;
   cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s ease;
 }
 
-#yesBtn {
-  background: linear-gradient(135deg,#ff5f9e,#ff8dc7);
+.btn.main {
+  background: linear-gradient(135deg, #ff5f9e, #ff8dc7);
   color: white;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(255,95,158,0.4);
 }
 
-#noBtn {
+.btn.soft {
   background: #eee;
+  color: #555;
+}
+
+.btn:hover {
+  transform: scale(1.05);
 }
 
 .shake {
@@ -66,11 +82,13 @@ button {
   100%{transform:translateX(0)}
 }
 
-/* Falling */
+/* Falling hearts */
 .falling-container {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .fall {
@@ -84,10 +102,8 @@ button {
   to { transform: translateY(110vh) rotate(360deg); }
 }
 
-.choices {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.hidden {
+  display: none;
 }
 
 .choice {
