@@ -1,3 +1,4 @@
+console.log("JS khdam ❤️");
 /* ===== URL PARAMS ===== */
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from") || "your husband";
