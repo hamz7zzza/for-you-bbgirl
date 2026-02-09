@@ -47,7 +47,25 @@ function createHeart() {
   setTimeout(() => h.remove(), 10000);
 }
 let heartInterval = setInterval(createHeart, 450);
+const container = document.querySelector(".falling-container");
+const items = ["❤️", "🤍", "🌸", "🌹"];
 
+function createFallingItem() {
+  const el = document.createElement("div");
+  el.classList.add("fall");
+  el.innerText = items[Math.floor(Math.random() * items.length)];
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.animationDuration = 5 + Math.random() * 5 + "s";
+  el.style.fontSize = 18 + Math.random() * 20 + "px";
+
+  container.appendChild(el);
+
+  setTimeout(() => {
+    el.remove();
+  }, 10000);
+}
+
+setInterval(createFallingItem, 400);
 /* PAGE 2 */
 yesBtn.addEventListener("click", () => {
   card.innerHTML = `
