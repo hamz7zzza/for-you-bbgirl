@@ -1,3 +1,4 @@
+/* ===== BODY & CARD ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -21,6 +22,7 @@ body {
   overflow-y: auto;
 }
 
+/* ===== IMAGES & MEMO ===== */
 .val-img {
   width: 70%;
   max-width: 250px;
@@ -31,12 +33,20 @@ body {
   font-size: 15px;
   line-height: 1.6;
   margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
 }
 
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ===== TEXT & CENTER ===== */
 .center {
   text-align: center;
 }
 
+/* ===== BUTTONS & CHOICES ===== */
 .buttons, .choices {
   display: flex;
   gap: 15px;
@@ -52,6 +62,8 @@ button, .btn, .choice {
   cursor: pointer;
   font-size: 15px;
   transition: all 0.2s ease;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .btn.main {
@@ -66,10 +78,19 @@ button, .btn, .choice {
   color: #555;
 }
 
-.btn:hover {
-  transform: scale(1.05);
+.choice {
+  background: linear-gradient(135deg, #ffe4ee, #ffb6c1);
+  color: #333;
+  padding: 12px;
+  font-weight: 600;
 }
 
+button:hover, .btn:hover, .choice:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== SHAKE EFFECT ===== */
 .shake {
   animation: shake 0.3s;
 }
@@ -82,7 +103,7 @@ button, .btn, .choice {
   100%{transform:translateX(0)}
 }
 
-/* Falling hearts */
+/* ===== FALLING ITEMS ===== */
 .falling-container {
   position: fixed;
   inset: 0;
@@ -102,12 +123,17 @@ button, .btn, .choice {
   to { transform: translateY(110vh) rotate(360deg); }
 }
 
+/* ===== HIDDEN CLASS ===== */
 .hidden {
   display: none;
 }
 
-.choice {
-  background: #ffe4ee;
-  padding: 10px;
-  border-radius: 20px;
+/* ===== SCROLLBAR (optional, mobile-friendly) ===== */
+.card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
 }
