@@ -1,87 +1,55 @@
-// URL params
+/* ===== URL PARAMS ===== */
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from") || "your husband";
 const to = params.get("to") || "you baby girl";
-
 document.getElementById("names").innerText = `${from} is asking ${to} 💖`;
 
 const card = document.getElementById("card");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
-/* NO BUTTON */
+/* ===== NO BUTTON LOGIC ===== */
 let yesScale = 1;
 let noClicks = 0;
 
-noBtn.addEventListener("click", () => {
+noBtn.onclick = () => {
   noClicks++;
   noBtn.classList.add("shake");
-setTimeout(() => noBtn.classList.remove("shake"), 300);
+  setTimeout(() => noBtn.classList.remove("shake"), 300);
 
   yesScale += 0.3;
   yesBtn.style.transform = `scale(${yesScale})`;
+
+  const scale = Math.max(0.5, 1 - noClicks * 0.1);
+  noBtn.style.transform = `scale(${scale}) translate(${Math.random()*120-60}px, ${Math.random()*80-40}px)`;
 
   if (noClicks === 1) noBtn.innerText = "Are you sure? 🥺";
   else if (noClicks === 2) noBtn.innerText = "Think again 😭";
   else if (noClicks === 3) noBtn.innerText = "Last chance 💔";
   else noBtn.innerText = "Okay okay 😵";
+};
 
-  const scale = Math.max(0.5, 1 - noClicks * 0.1);
-  noBtn.style.transform = `
-    scale(${scale})
-    translate(${Math.random()*300-150}px, ${Math.random()*200-100}px)
-  `;
-});
-
-/* HEARTS */
-const hearts = ["💖","🌸","💕","🌹"];
-function createHeart() {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (14 + Math.random() * 12) + "px";
-  h.style.animationDuration = (7 + Math.random() * 4) + "s";
-  h.style.opacity = "0.8";
-  document.getElementById("hearts-container").appendChild(h);
-  setTimeout(() => h.remove(), 10000);
-}
-let heartInterval = setInterval(createHeart, 450);
+/* ===== FALLING HEARTS SLOW & ROMANTIC ===== */
 const container = document.querySelector(".falling-container");
 const items = ["❤️", "🤍", "🌸", "🌹"];
 
 function createFallingItem() {
   const el = document.createElement("div");
-  el.classList.add("fall");
+  el.className = "fall";
   el.innerText = items[Math.floor(Math.random() * items.length)];
+
   el.style.left = Math.random() * 100 + "vw";
-  el.style.animationDuration = 5 + Math.random() * 5 + "s";
-  el.style.fontSize = 18 + Math.random() * 20 + "px";
+  el.style.fontSize = 16 + Math.random() * 14 + "px";
+  el.style.animationDuration = 10 + Math.random() * 10 + "s";
+  el.style.transform = `rotate(${Math.random()*360}deg)`;
 
   container.appendChild(el);
-
-  setTimeout(() => {
-    el.remove();
-  }, 10000);
+  setTimeout(() => el.remove(), 20000);
 }
+setInterval(createFallingItem, 800);
 
-setInterval(createFallingItem, 400);
-/* PAGE 2 */
-yesBtn.addEventListener("click", () => {
-  card.innerHTML = `
-    <img src="cat-love.gif" style="width:240px;"><br><br>
-    <h1>YAAAY 💖<br>That’s my good girl 😌❤️</h1>
-    <button id="continueBtn">Continue →</button>
-  `;
-
-  clearInterval(heartInterval);
-  heartInterval = setInterval(createHeart, 90);
-
-  document.getElementById("continueBtn").onclick = pageDistance;
-});
-
-/* PAGE: Ukraine */
-function pageDistance() {
+/* ===== PAGE 2 ===== */
+yesBtn.onclick = () => {
   card.innerHTML = `
     <h1>Я знаю, що ми далеко… 🤍</h1>
     <div class="memo">
@@ -98,30 +66,25 @@ function pageDistance() {
     <button id="nextBtn">Next →</button>
   `;
   document.getElementById("nextBtn").onclick = page3;
-}
+};
 
-/* PAGE 3 */
+/* ===== PAGE 3 ===== */
 function page3() {
   card.innerHTML = `
     <h1>When you miss me… 💌</h1>
     <div class="memo">
-           I’m thinking about you right now.<br><br>
-
+      I’m thinking about you right now.<br><br>
       Close your eyes… I’m there.<br><br>
-
       You’re safe with me.<br><br>
-
       Distance can’t stop what’s real.<br><br>
-
-      Even when I’m not next to you,
-      my heart never leaves you.<br><br>
+      Even when I’m not next to you, my heart never leaves you.<br><br>
     </div>
     <button id="nextBtn">Next →</button>
   `;
   document.getElementById("nextBtn").onclick = page4;
 }
 
-/* PAGE 4 */
+/* ===== PAGE 4 ===== */
 function page4() {
   let clicks = 0;
   card.innerHTML = `
@@ -129,7 +92,6 @@ function page4() {
     <div id="bigHeart" style="font-size:80px;cursor:pointer;">❤️</div>
     <p id="count">0 / 5</p>
   `;
-
   document.getElementById("bigHeart").onclick = () => {
     clicks++;
     document.getElementById("count").innerText = `${clicks} / 5`;
@@ -137,37 +99,52 @@ function page4() {
   };
 }
 
-/* PAGE 5 – LONG MEMO */
+/* ===== PAGE 5 – LONG MEMO ===== */
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
     <div class="memo">
-    When I meet you I know that a new chapter of my life begins with you 
-I never knew a sweet girl like you 
-I literally love everything about you they way you talk they way you smile the way you looking at me like even if we are talking ft and I m doing something in my phone I saw the way you look at me I love your eyes you face you lips you cheeks even mom call you by “ my cheeks”
-She is always saying are you talking to your cheeks  and even I know sometimes get jealous cuz mom like that 😂😂😂 she always telling that I m gonna love my wife more than her and i always laugh about that cuz I m 27 yo and she never told me to get marry just always asking me to find a girl like you make me happy and love the real who am I cuz she knew about my biggest broken heart happened to me and let back talking about you 
-It a valentine day I want honestly to buy something cuz you deserve everything but low budget but I m gonna do it later ofc you need something that keep me in your mind ( even I know I m always there but …)  and yes I always knew there is a little kid inside you need love and caring i honestly trying to take care of you even I m far away 
-I love you so much more than anything 
-You are the world to me 
-I m happy cuz I have you in my life and loving me 
-I hope me meet soon and also I wish that we meet sooner maybe it gonna more perfect than that but it’s good now everything going well 
-And I wish make you more happy and laugh more 
-Cuz I love to see your laugh and hear it 
-I love your voice 
-I love your  smile 
-I love your eyes 
-I love your nose 
-I love your head 
-I love your hair 
-I love your hands 
-I love you so much ❤️
+      When I meet you I know that a new chapter of my life begins with you.<br><br>
+      I never knew a sweet girl like you.<br><br>
+      I literally love everything about you — the way you talk, the way you smile,
+      the way you look at me. Even when we are on FaceTime and I’m doing something
+      on my phone, I still notice the way you look at me.<br><br>
+      I love your eyes, your face, your lips, your cheeks — even my mom calls you
+      “my cheeks”. She always says: “Are you talking to your cheeks?” and sometimes
+      I even get jealous because she likes you 😂😂😂<br><br>
+      She always tells me that I will love my wife more than her, and I laugh
+      because I’m 27 years old and she never pushed me to marry. She only wants me
+      to find a girl like you — someone who makes me happy and loves the real me.
+      She knows about the biggest heartbreak of my life.<br><br>
+      And now… back to you.<br><br>
+      It’s Valentine’s Day. I honestly wanted to buy you something because you
+      deserve everything, but my budget is low right now. I promise I’ll do it
+      later. You deserve something that keeps me in your mind — even though I know
+      I’m already there 🤍<br><br>
+      I know there is a little kid inside you that needs love and care, and I’m
+      truly trying to take care of you, even from far away.<br><br>
+      I love you so much — more than anything.<br>
+      You are my world.<br><br>
+      I’m happy to have you in my life and to be loved by you.<br>
+      I hope we meet soon. I wish we met earlier, maybe it would have been even
+      more perfect — but what we have now is beautiful.<br><br>
+      I want to make you happier, make you laugh more, because I love seeing and
+      hearing your laugh.<br><br>
+      I love your voice.<br>
+      I love your smile.<br>
+      I love your eyes.<br>
+      I love your nose.<br>
+      I love your head.<br>
+      I love your hair.<br>
+      I love your hands.<br><br>
+      I love you so much ❤️
     </div>
     <button id="nextBtn">Next →</button>
   `;
   document.getElementById("nextBtn").onclick = pageChoices;
 }
 
-/* CHOICE PAGE */
+/* ===== CHOICES PAGE ===== */
 function pageChoices() {
   card.innerHTML = `
     <h1>Choose a message for today 💌</h1>
@@ -179,7 +156,6 @@ function pageChoices() {
     <div id="choiceResult" style="display:none;" class="memo"></div>
   `;
 
-  // Add click events
   document.querySelectorAll(".choice").forEach(btn => {
     btn.onclick = () => {
       const type = btn.dataset.msg;
@@ -208,13 +184,12 @@ function pageChoices() {
       box.innerHTML = texts[type];
       box.style.display = "block";
 
-      // After user chooses, show final page automatically after short delay
       setTimeout(pageFinal, 2500);
     };
   });
 }
 
-/* FINAL PAGE */
+/* ===== FINAL PAGE ===== */
 function pageFinal() {
   card.innerHTML = `
     <h1>
