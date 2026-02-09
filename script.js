@@ -200,6 +200,9 @@ function pageFinal() {
       Distance didn’t stop us.<br>
       And it won’t stop us. ❤️
     </h1>
+    <p style="margin-top:15px; font-size:18px; color:#ff5f9e;">
+      Happy Valentine Bunny, I love you 💖 Muwah
+    </p>
   `;
 }
 
