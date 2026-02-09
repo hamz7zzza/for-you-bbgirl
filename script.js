@@ -40,13 +40,13 @@ function createFallingItem() {
 
   el.style.left = Math.random() * 100 + "vw";
   el.style.fontSize = 16 + Math.random() * 14 + "px";
-  el.style.animationDuration = 10 + Math.random() * 10 + "s";
+  el.style.animationDuration = 4 + Math.random() * 4 + "s";
   el.style.transform = `rotate(${Math.random()*360}deg)`;
 
   container.appendChild(el);
   setTimeout(() => el.remove(), 20000);
 }
-setInterval(createFallingItem, 800);
+setInterval(createFallingItem, 400);
 
 /* ===== PAGE 2 ===== */
 yesBtn.onclick = () => {
