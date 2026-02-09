@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 console.log("JS khdam ❤️");
 /* ===== URL PARAMS ===== */
 const params = new URLSearchParams(window.location.search);
@@ -113,7 +114,7 @@ function page4() {
   `;
   document.getElementById("bigHeart").onclick = () => {
     clicks++;
-    document.getElementById("count").innerText = \`\${clicks} / 5\`;
+    document.getElementById("count").innerText = `${clicks} / 5`;
     if (clicks === 5) page5();
   };
 }
@@ -225,3 +226,5 @@ function pageFinal() {
     </h1>
   `;
 }
+
+});
