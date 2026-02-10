@@ -26,21 +26,27 @@ function page1() {
       <button id="noBtn">No 😢</button>
     </div>
   `;
+
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
 
   let yesScale = 1;
   let noClicks = 0;
+
   noBtn.onclick = () => {
     noClicks++;
     noBtn.classList.add("shake");
     setTimeout(() => noBtn.classList.remove("shake"), 300);
+
+    // Yes button يكبر كل مرة
     yesScale += 0.3;
     yesBtn.style.transform = `scale(${yesScale})`;
+
+    // النصوص ديال No
     if (noClicks === 1) noBtn.innerText = "Are you sure? 🥺";
     else if (noClicks === 2) noBtn.innerText = "Think again 😭";
     else if (noClicks === 3) noBtn.innerText = "Last chance 💔";
-    else noBtn.innerText = "Okay okay 😵";
+    else if (noClicks >= 4) noBtn.innerText = "There is no other way, just click Yes 💖";
   };
 
   yesBtn.onclick = page2;
