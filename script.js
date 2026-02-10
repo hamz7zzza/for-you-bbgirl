@@ -131,9 +131,46 @@ function page5() {
     </div>
     <button id="nextBtn">Continue →</button>
   `;
+  document.getElementById("nextBtn").onclick = pageQuiet;
+}
+function pageQuiet() {
+  card.innerHTML = `
+    <h1>You don’t need to do anything 🤍</h1>
+
+    <div class="memo">
+      You don’t need to click.<br><br>
+      You don’t need to choose.<br><br>
+      You don’t need to be strong right now.<br><br><br>
+
+      This page exists only to remind you<br>
+      that you are loved<br>
+      without conditions,<br>
+      without effort,<br>
+      without distance.<br><br>
+
+      If you feel tired, stay here.<br><br>
+      I’m not asking for anything.<br><br>
+      I’m just here.
+    </div>
+
+    <hr style="margin:30px 0;opacity:0.2">
+
+    <div class="memo">
+      I’m not trying to impress you.<br><br>
+      I’m not trying to be romantic.<br><br>
+      I’m not trying to be perfect.<br><br>
+      I’m not trying to win you.<br><br><br>
+
+      I already chose you.<br><br>
+      Every day.<br><br>
+      Even when it’s quiet.
+    </div>
+
+    <button id="nextBtn" style="margin-top:25px">Continue →</button>
+  `;
+
   document.getElementById("nextBtn").onclick = page6;
 }
-
 /* ===== PAGE 6 – Choose Message ===== */
 function page6() {
   card.innerHTML = `
