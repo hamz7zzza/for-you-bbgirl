@@ -49,9 +49,25 @@ function page1() {
     else if (noClicks >= 4) noBtn.innerText = "There is no other way, just click Yes 💖";
   };
 
-  yesBtn.onclick = page2;
+  yesBtn.onclick = pageYes;
 }
+  /* ===== PAGEyes  – good girl ===== */
+function pageYes() {
+  card.innerHTML = `
+    <img src="cat-love.gif" style="width:240px;"><br><br>
+    <h1>
+      YAAAY 💖<br>
+      That’s my good girl 😌❤️<br>
+      I love you forever 💕
+    </h1>
+    <button id="continueBtn">Continue →</button>
+  `;
 
+  clearInterval(heartInterval);
+  heartInterval = setInterval(createHeart, 90);
+
+  document.getElementById("continueBtn").onclick = page2;
+}
 /* ===== PAGE 2 – Distance Memo ===== */
 function page2() {
   card.innerHTML = `
