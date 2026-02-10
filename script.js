@@ -62,10 +62,6 @@ function pageYes() {
     </h1>
     <button id="continueBtn">Continue →</button>
   `;
-
-  clearInterval(heartInterval);
-  heartInterval = setInterval(createHeart, 90);
-
   document.getElementById("continueBtn").onclick = page2;
 }
 /* ===== PAGE 2 – Distance Memo ===== */
