@@ -78,7 +78,7 @@ function page3() {
     <h1>When you miss me… 💌</h1>
     <div class="memo">
       I’m thinking about you right now.<br><br>
-      Close your eyes… I’m there.<br>
+      Close your eyes and breath i love you so much and yiu know I’m there and everywhere .<br>
       You’re safe with me.<br>
       Distance can’t stop what’s real.<br>
       Even when I’m not next to you, my heart never leaves you.
@@ -214,7 +214,7 @@ function page7() {
       Even on days I’m tired.<br>
       Even on days I’m far.<br>
       Even on days life is heavy…<br><br>
-      I will always choose you.
+      I will always choose you , you the only one i wanna continue my life with .
     </div>
     <button id="nextBtn">Continue →</button>
   `;
