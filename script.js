@@ -36,18 +36,34 @@
     }
 
     // ===== PAGE 0 – Important =====
-    card.innerHTML = `
-      <h1 style="font-size:28px">⚠️ Important</h1>
-      <div class="memo" style="text-align:center">
-        Don’t worry.<br><br>
-        I won’t bomb your house.<br>
-        Trust me.<br><br>
-        I love you. ❤️
-      </div>
-      <button id="trustBtn">Okay… I trust you 🤍</button>
-    `;
-    document.getElementById("trustBtn").onclick = page1;
+/* ===== PAGE 0 – Important ===== */
+card.innerHTML = `
+  <h1 style="font-size:28px">⚠️ Important</h1>
+  <div class="memo" style="text-align:center">
+    Don’t worry.<br><br>
+    I won’t bomb your house.<br>
+    Trust me.<br><br>
+    I love you. ❤️
+  </div>
 
+  <button id="playBtn">Play me 🎵</button>
+  <button id="trustBtn">Okay… I trust you 🤍</button>
+`;
+
+document.getElementById("playBtn").onclick = () => {
+  if (!music) return;
+
+  music.loop = true;        // تبقى شاعلة
+  music.muted = false;
+  music.volume = 0.7;
+  music.play().catch(() => {}); // بلا errors
+
+  document.getElementById("playBtn").innerText = "Music is on ✅";
+  document.getElementById("playBtn").disabled = true;
+  document.getElementById("playBtn").style.opacity = "0.7";
+};
+
+document.getElementById("trustBtn").onclick = page1;
     // ===== PAGE 1 – Valentine =====
     function page1() {
       card.innerHTML = `
