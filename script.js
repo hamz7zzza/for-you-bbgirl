@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+const music = document.getElementById("bgMusic");
 const card = document.getElementById("card");
 const container = document.querySelector(".falling-container");
 
