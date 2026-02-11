@@ -96,34 +96,61 @@
       document.getElementById("nextBtn").onclick = page1;
     }
 
-    // ===== PAGE YES =====
     function pageYes() {
-      card.innerHTML = `
-        <img src="cat-love.gif" style="width:240px;"><br><br>
-        <h1>
-          YAAAY 💖<br>
-          That’s my good girl 😌❤️<br>
-          I love you forever 💕
-        </h1>
-        <button id="continueBtn">Continue →</button>
-      `;
+  card.innerHTML = `
+    <img src="cat-love.gif" style="width:240px;"><br><br>
+    <h1>
+      YAAAY 💖<br>
+      That’s my good girl 😌❤️<br>
+      I love you forever 💕
+    </h1>
+    <button id="continueBtn">Continue →</button>
+  `;
 
-      // MUSIC (fade in)
-      if (music) {
-        music.volume = 0;
-        music.play().then(() => {
-          const fade = setInterval(() => {
-            if (music.volume < 0.7) music.volume = Math.min(0.7, music.volume + 0.05);
-            else clearInterval(fade);
-          }, 200);
-        }).catch(() => {});
-      }
+  // MUSIC (strong play + fallback)
+  if (music) {
+    music.currentTime = 0;
+    music.muted = false;
+    music.volume = 0;
 
-      clearInterval(heartInterval);
-      heartInterval = setInterval(createHeart, 90);
+    const tryPlay = () => {
+      return music.play().then(() => {
+        const fade = setInterval(() => {
+          if (music.volume < 0.7) {
+            music.volume = Math.min(0.7, music.volume + 0.05);
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      });
+    };
 
-      document.getElementById("continueBtn").onclick = page2;
-    }
+    tryPlay().catch(() => {
+      const btn = document.createElement("button");
+      btn.textContent = "Tap to unmute 🎵";
+      btn.style.marginTop = "12px";
+      card.appendChild(btn);
+
+      btn.onclick = () => {
+        tryPlay().then(() => btn.remove()).catch(() => {});
+      };
+    });
+
+    music.addEventListener("error", () => {
+      const errBox = document.createElement("div");
+      errBox.className = "memo";
+      errBox.style.marginTop = "12px";
+      errBox.style.color = "#ff3b7a";
+      errBox.innerHTML = "⚠️ Song file not loading (check song.mp3 name/path/format).";
+      card.appendChild(errBox);
+    }, { once: true });
+  }
+
+  clearInterval(heartInterval);
+  heartInterval = setInterval(createHeart, 90);
+
+  document.getElementById("continueBtn").onclick = page2;
+}
 
     // ===== PAGE 2 – Distance Memo =====
     function page2() {
