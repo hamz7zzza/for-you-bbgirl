@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
 const music = document.getElementById("bgMusic");
 const card = document.getElementById("card");
 const container = document.querySelector(".falling-container");
@@ -6,7 +7,7 @@ const container = document.querySelector(".falling-container");
 let forcedNoStage = 0;
 let heartInterval;
 
-/* ===== FALLING HEARTS ===== */
+/* HEARTS */
 function createHeart() {
   const el = document.createElement("div");
   el.className = "fall";
@@ -18,7 +19,7 @@ function createHeart() {
   setTimeout(()=>el.remove(),7000);
 }
 
-/* ===== PAGE 0 – Important ===== */
+/* PAGE 0 */
 card.innerHTML = `
 <h1 style="font-size:28px">⚠️ Important</h1>
 <div class="memo">
@@ -31,10 +32,10 @@ card.innerHTML = `
 `;
 document.getElementById("trustBtn").onclick = page1;
 
-/* ===== PAGE 1 – Valentine ===== */
+/* PAGE 1 */
 function page1() {
   card.innerHTML = `
-    <img src="cat.png" class="val-img">
+    <img src="cat.png" class="val-img" id="mainImg">
     <h1>Will you be my Valentine? 💘</h1>
     <p>your husband is asking you 💖</p>
     <div class="buttons">
@@ -42,6 +43,8 @@ function page1() {
       ${forcedNoStage >= 2 ? `<button id="yesBtn">Yes 💕</button>` : ""}
     </div>
   `;
+
+  document.getElementById("mainImg").onload = e => e.target.style.opacity=1;
 
   if (forcedNoStage < 2) {
     document.getElementById("noBtn").onclick = pageDog1;
@@ -51,25 +54,26 @@ function page1() {
   }
 }
 
-/* ===== DOG PAGE 1 ===== */
+/* DOG PAGE 1 */
 function pageDog1() {
   forcedNoStage = 1;
   card.innerHTML = `
-    <img src="randy1.jpg" class="val-img">
+    <img src="randy1.jpg" class="val-img" id="dog1">
     <h1>ARE YOU SERIOUS?? 🐕</h1>
     <div class="memo">
       Hit YES not NO.
     </div>
     <button id="nextBtn">Click me</button>
   `;
+  document.getElementById("dog1").onload = e => e.target.style.opacity=1;
   document.getElementById("nextBtn").onclick = pageDog2;
 }
 
-/* ===== DOG PAGE 2 ===== */
+/* DOG PAGE 2 */
 function pageDog2() {
   forcedNoStage = 2;
   card.innerHTML = `
-    <img src="randy2.jpg" class="val-img">
+    <img src="randy2.jpg" class="val-img" id="dog2">
     <h1>One last chance… 🐶</h1>
     <div class="memo">
       Are you sure about that?<br><br>
@@ -78,10 +82,11 @@ function pageDog2() {
     </div>
     <button id="nextBtn">Try again</button>
   `;
+  document.getElementById("dog2").onload = e => e.target.style.opacity=1;
   document.getElementById("nextBtn").onclick = page1;
 }
 
-/* ===== PAGE YES ===== */
+/* YES PAGE */
 function pageYes() {
   card.innerHTML = `
     <img src="cat-love.gif" style="width:240px;"><br><br>
@@ -92,14 +97,23 @@ function pageYes() {
     </h1>
     <button id="continueBtn">Continue →</button>
   `;
-  music.play();
-music.volume = 0.7;
-  clearInterval(heartInterval);
+
+  music.volume = 0;
+  music.play().then(()=>{
+    let fade = setInterval(()=>{
+      if(music.volume < 0.7){
+        music.volume += 0.05;
+      } else {
+        clearInterval(fade);
+      }
+    },200);
+  });
+
   heartInterval = setInterval(createHeart, 90);
   document.getElementById("continueBtn").onclick = page2;
 }
 
-/* ===== PAGE 2 – Distance ===== */
+/* PAGE 2 – Distance */
 function page2() {
   card.innerHTML = `
     <h1>Я знаю, що ми далеко… 🤍</h1>
@@ -119,7 +133,7 @@ function page2() {
   document.getElementById("nextBtn").onclick = page3;
 }
 
-/* ===== PAGE 3 – Missing ===== */
+/* PAGE 3 – Missing */
 function page3() {
   card.innerHTML = `
     <h1>When you miss me… 💌</h1>
@@ -136,7 +150,7 @@ function page3() {
   document.getElementById("nextBtn").onclick = page4;
 }
 
-/* ===== PAGE 4 – Tap Heart ===== */
+/* PAGE 4 – Tap Heart */
 function page4() {
   let clicks = 0;
   card.innerHTML = `
@@ -146,12 +160,12 @@ function page4() {
   `;
   document.getElementById("bigHeart").onclick = () => {
     clicks++;
-    document.getElementById("count").innerText = `${clicks} / 5`;
+    document.getElementById("count").innerText = \`\${clicks} / 5\`;
     if (clicks === 5) page5();
   };
 }
 
-/* ===== PAGE 5 – LONG MEMO ===== */
+/* PAGE 5 – LONG MEMO */
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
@@ -177,7 +191,7 @@ function page5() {
   document.getElementById("nextBtn").onclick = pageQuiet;
 }
 
-/* ===== PAGE QUIET ===== */
+/* PAGE QUIET */
 function pageQuiet() {
   card.innerHTML = `
     <h1>You don’t need to do anything 🤍</h1>
@@ -190,7 +204,7 @@ function pageQuiet() {
   document.getElementById("nextBtn").onclick = page6;
 }
 
-/* ===== PAGE 6 – Choose ===== */
+/* PAGE 6 */
 function page6() {
   card.innerHTML = `
     <h1>Choose what you need right now 💌</h1>
@@ -201,24 +215,29 @@ function page6() {
     </div>
     <div id="result" class="memo" style="display:none;"></div>
   `;
+
   const texts = {
-    comfort:`I wish I could wrap you in my arms.`,
-    love:`You are deeply loved.`,
-    hope:`Everything will make sense one day.`
+    comfort:\`I wish I could wrap you in my arms.\`,
+    love:\`You are deeply loved.\`,
+    hope:\`Everything will make sense one day.\`
   };
+
   document.querySelectorAll(".choice").forEach(btn=>{
     btn.onclick=()=>{
       const box=document.getElementById("result");
       box.innerHTML=texts[btn.dataset.msg];
       box.style.display="block";
-      box.insertAdjacentHTML("afterend",
-        `<button class="mainBtn">Always you 🤍</button>`);
-      document.querySelector(".mainBtn").onclick = page7;
+
+      if(!document.querySelector(".mainBtn")){
+        box.insertAdjacentHTML("afterend",
+          \`<button class="mainBtn">Always you 🤍</button>\`);
+        document.querySelector(".mainBtn").onclick = page7;
+      }
     }
   });
 }
 
-/* ===== PAGE 7 ===== */
+/* PAGE 7 */
 function page7() {
   card.innerHTML = `
     <h1>A promise 🤍</h1>
@@ -231,7 +250,7 @@ function page7() {
   document.getElementById("nextBtn").onclick = pageAppreciation;
 }
 
-/* ===== PAGE 8 ===== */
+/* PAGE 8 */
 function pageAppreciation() {
   card.innerHTML = `
     <h1>Things I don’t say enough 🤍</h1>
@@ -245,8 +264,9 @@ function pageAppreciation() {
   document.getElementById("nextBtn").onclick = pageFinal;
 }
 
-/* ===== FINAL ===== */
+/* FINAL */
 function pageFinal() {
+  clearInterval(heartInterval);
   card.innerHTML = `
     <h1>Distance didn’t stop us ❤️</h1>
     <p style="color:#ff5f9e;font-size:18px">
