@@ -92,6 +92,8 @@ function pageYes() {
     </h1>
     <button id="continueBtn">Continue →</button>
   `;
+  music.play();
+music.volume = 0.7;
   clearInterval(heartInterval);
   heartInterval = setInterval(createHeart, 90);
   document.getElementById("continueBtn").onclick = page2;
