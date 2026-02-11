@@ -348,18 +348,27 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = pageFinal;
     }
 
-    function pageFinal() {
-      clearInterval(heartInterval);
-      card.innerHTML = `
-        <h1 style="font-size:26px">
-          Distance didn’t stop us.<br>
-          And it won’t stop us. ❤️
-        </h1>
-        <p style="margin-top:15px; font-size:18px; color:#ff5f9e;">
-          Happy Valentine Bunny, I love you 💖 Muwah
-        </p>
-      `;
-    }
+  function pageFinal() {
+  clearInterval(heartInterval);
 
+  card.innerHTML = `
+    <h1 style="font-size:26px">
+      Distance didn’t stop us.<br>
+      And it won’t stop us. ❤️
+    </h1>
+    <p style="margin-top:15px; font-size:18px; color:#ff5f9e;">
+      Happy Valentine Bunny, I love you 💖 Muwah
+    </p>
+
+    <button id="stopBtn" style="margin-top:18px">Stop music 🔇</button>
+  `;
+
+  document.getElementById("stopBtn").onclick = () => {
+    if (music) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  };
+}
   });
 })();
