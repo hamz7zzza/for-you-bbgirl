@@ -113,7 +113,7 @@ function pageYes() {
   document.getElementById("continueBtn").onclick = page2;
 }
 
-/* PAGE 2 – Distance */
+/* PAGE 2 */
 function page2() {
   card.innerHTML = `
     <h1>Я знаю, що ми далеко… 🤍</h1>
@@ -133,7 +133,7 @@ function page2() {
   document.getElementById("nextBtn").onclick = page3;
 }
 
-/* PAGE 3 – Missing */
+/* PAGE 3 */
 function page3() {
   card.innerHTML = `
     <h1>When you miss me… 💌</h1>
@@ -150,7 +150,7 @@ function page3() {
   document.getElementById("nextBtn").onclick = page4;
 }
 
-/* PAGE 4 – Tap Heart */
+/* PAGE 4 */
 function page4() {
   let clicks = 0;
   card.innerHTML = `
@@ -160,12 +160,12 @@ function page4() {
   `;
   document.getElementById("bigHeart").onclick = () => {
     clicks++;
-    document.getElementById("count").innerText = \`\${clicks} / 5\`;
+    document.getElementById("count").innerText = `${clicks} / 5`;
     if (clicks === 5) page5();
   };
 }
 
-/* PAGE 5 – LONG MEMO */
+/* PAGE 5 */
 function page5() {
   card.innerHTML = `
     <h1>From my heart 🤍</h1>
@@ -217,9 +217,9 @@ function page6() {
   `;
 
   const texts = {
-    comfort:\`I wish I could wrap you in my arms.\`,
-    love:\`You are deeply loved.\`,
-    hope:\`Everything will make sense one day.\`
+    comfort: "I wish I could wrap you in my arms.",
+    love: "You are deeply loved.",
+    hope: "Everything will make sense one day."
   };
 
   document.querySelectorAll(".choice").forEach(btn=>{
@@ -230,7 +230,7 @@ function page6() {
 
       if(!document.querySelector(".mainBtn")){
         box.insertAdjacentHTML("afterend",
-          \`<button class="mainBtn">Always you 🤍</button>\`);
+          `<button class="mainBtn">Always you 🤍</button>`);
         document.querySelector(".mainBtn").onclick = page7;
       }
     }
