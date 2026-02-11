@@ -75,7 +75,7 @@ h1 {
   max-width: 240px;
   margin-bottom: 15px;
   opacity: 0;
-  transition: 0.5s;
+  transition: opacity 0.6s ease;
 }
 
 button {
