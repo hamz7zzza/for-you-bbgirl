@@ -162,6 +162,7 @@ function page5() {
       She always says: “Are you talking to your cheeks?” and sometimes I even get jealous because she likes you 😂😂😂<br><br>
       She always tells me that I will love my wife more than her, and I laugh because I’m 27 and she never pushed me to marry.<br><br>
       And now… back to you.<br><br>
+      i always keep thinking about uou and end up lauguing when u remeber things we laugh about i love the way you are so much even sometime you mind fuck our vibe ahahaha but that s you i wont complaint about that you are amazimg and the way you are .<br>
       It’s Valentine’s Day. I honestly wanted to buy you something because you deserve everything, but my budget is low.<br>
       I promise I’ll do it later.<br><br>
       I know there is a little kid inside you that needs love and care, and I’m truly trying to take care of you even from far away.<br><br>
