@@ -97,3 +97,20 @@ button:hover{
   background-color: rgba(255,95,158,0.3);
   border-radius:3px;
 }
+/* ===== VOLUME BAR ===== */
+.volume-wrap{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.volume-wrap span{
+  font-size: 16px;
+}
+
+.volume-wrap input[type="range"]{
+  width: 180px;
+  accent-color: #ff5f9e;
+}
