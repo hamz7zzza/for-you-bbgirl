@@ -47,7 +47,6 @@ card.innerHTML = `
     I love you. ❤️
   </div>
 
-  <button id="playBtn">Play me 🎵</button>
   <button id="trustBtn">Okay… I trust you 🤍</button>
 `;
 
