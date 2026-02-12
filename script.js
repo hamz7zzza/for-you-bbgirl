@@ -1,20 +1,7 @@
 (function () {
-  // أي خطأ غادي يبان فالكارت مباشرة
-  window.addEventListener("error", (e) => {
-    const card = document.getElementById("card");
-    if (card) {
-      card.innerHTML = `
-        <h1 style="color:#ff3b7a">JS Error ❌</h1>
-        <div class="memo" style="text-align:left">
-          <strong>Message:</strong> ${e.message}<br><br>
-          <strong>File:</strong> ${e.filename}<br>
-          <strong>Line:</strong> ${e.lineno}
-        </div>
-      `;
-    }
-  });
 
   document.addEventListener("DOMContentLoaded", () => {
+
     const music = document.getElementById("bgMusic");
     const card = document.getElementById("card");
     const container = document.querySelector(".falling-container");
@@ -24,47 +11,33 @@
     let forcedNoStage = 0;
     let heartInterval;
     let savedVolume = 0.7;
-    
+
+    /* ===== FALLING HEARTS ===== */
     function createHeart() {
       const el = document.createElement("div");
       el.className = "fall";
-      el.innerText = ["❤️", "💖", "🌸", "✨"][Math.floor(Math.random() * 4)];
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.fontSize = (14 + Math.random() * 20) + "px";
-      el.style.animationDuration = (4 + Math.random() * 3) + "s";
+      el.innerText = ["❤️","💖","🌸","✨"][Math.floor(Math.random()*4)];
+      el.style.left = Math.random()*100 + "vw";
+      el.style.fontSize = (14 + Math.random()*20) + "px";
+      el.style.animationDuration = (4 + Math.random()*3) + "s";
       container.appendChild(el);
-      setTimeout(() => el.remove(), 7000);
+      setTimeout(()=>el.remove(),7000);
     }
 
-    // ===== PAGE 0 – Important =====
-/* ===== PAGE 0 – Important ===== */
-card.innerHTML = `
-  <h1 style="font-size:28px">⚠️ Important</h1>
-  <div class="memo" style="text-align:center">
-    Don’t worry.<br><br>
-    I won’t bomb your house.<br>
-    Trust me.<br><br>
-    I love you. ❤️
-  </div>
+    /* ===== PAGE 0 – Important ===== */
+    card.innerHTML = `
+      <h1 style="font-size:28px">⚠️ Important</h1>
+      <div class="memo" style="text-align:center">
+        Don’t worry.<br><br>
+        I won’t bomb your house.<br>
+        Trust me.<br><br>
+        I love you. ❤️
+      </div>
+      <button id="trustBtn">Okay… I trust you 🤍</button>
+    `;
+    document.getElementById("trustBtn").onclick = page1;
 
-  <button id="trustBtn">Okay… I trust you 🤍</button>
-`;
-
-document.getElementById("playBtn").onclick = () => {
-  if (!music) return;
-
-  music.loop = true;        // تبقى شاعلة
-  music.muted = false;
-  music.volume = 0.7;
-  music.play().catch(() => {}); // بلا errors
-
-  document.getElementById("playBtn").innerText = "Music is on ✅";
-  document.getElementById("playBtn").disabled = true;
-  document.getElementById("playBtn").style.opacity = "0.7";
-};
-
-document.getElementById("trustBtn").onclick = page1;
-    // ===== PAGE 1 – Valentine =====
+    /* ===== PAGE 1 – Valentine ===== */
     function page1() {
       card.innerHTML = `
         <img src="cat.png" class="val-img">
@@ -84,19 +57,21 @@ document.getElementById("trustBtn").onclick = page1;
       }
     }
 
-    // ===== DOG PAGE 1 =====
+    /* ===== DOG PAGE 1 ===== */
     function pageDog1() {
       forcedNoStage = 1;
       card.innerHTML = `
         <img src="randy1.jpg" class="val-img">
         <h1>ARE YOU SERIOUS?? 🐕</h1>
-        <div class="memo">Hit YES not NO.</div>
+        <div class="memo">
+          Hit YES not NO.
+        </div>
         <button id="nextBtn">Click me</button>
       `;
       document.getElementById("nextBtn").onclick = pageDog2;
     }
 
-    // ===== DOG PAGE 2 =====
+    /* ===== DOG PAGE 2 ===== */
     function pageDog2() {
       forcedNoStage = 2;
       card.innerHTML = `
@@ -112,43 +87,58 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = page1;
     }
 
-  function pageYes() {
-  card.innerHTML = `
-    <img src="cat-love.gif" style="width:240px;"><br><br>
-    <h1>
-      YAAAY 💖<br>
-      That’s my good girl 😌❤️<br>
-      I love you forever 💕
-    </h1>
+    /* ===== PAGE YES – good girl + MUSIC + VOLUME ===== */
+    function pageYes() {
+      card.innerHTML = `
+        <img src="cat-love.gif" style="width:240px;"><br><br>
+        <h1>
+          YAAAY 💖<br>
+          That’s my good girl 😌❤️<br>
+          I love you forever 💕
+        </h1>
 
-    <div class="volume-wrap">
-      <span>🔊</span>
-      <input id="volSlider" type="range" min="0" max="1" step="0.01" value="${savedVolume}">
-    </div>
+        <div class="volume-wrap">
+          <span>🔊</span>
+          <input id="volSlider" type="range" min="0" max="1" step="0.01" value="${savedVolume}">
+        </div>
 
-    <button id="continueBtn">Continue →</button>
-  `;
+        <button id="continueBtn">Continue →</button>
+      `;
 
-  if (music) {
-    music.currentTime = 0;
-    music.muted = false;
-    music.volume = savedVolume;
+      // Start music on YES (loop + keep playing)
+      if (music) {
+        music.currentTime = 0;
+        music.muted = false;
+        music.loop = true;
+        music.volume = 0;
 
-    music.play().catch(() => {});
+        // Try play then fade in
+        music.play().then(() => {
+          const fade = setInterval(() => {
+            if (music.volume < savedVolume) {
+              music.volume = Math.min(savedVolume, music.volume + 0.05);
+            } else {
+              clearInterval(fade);
+            }
+          }, 200);
+        }).catch(() => {
+          // If blocked for any reason, keep silent (no crash)
+        });
 
-    const slider = document.getElementById("volSlider");
-    slider.addEventListener("input", () => {
-      savedVolume = parseFloat(slider.value);
-      music.volume = savedVolume;
-    });
-  }
+        const slider = document.getElementById("volSlider");
+        slider.addEventListener("input", () => {
+          savedVolume = parseFloat(slider.value);
+          music.volume = savedVolume;
+        });
+      }
 
-  clearInterval(heartInterval);
-  heartInterval = setInterval(createHeart, 90);
+      clearInterval(heartInterval);
+      heartInterval = setInterval(createHeart, 90);
 
-  document.getElementById("continueBtn").onclick = page2;
-}
-    // ===== PAGE 2 – Distance Memo =====
+      document.getElementById("continueBtn").onclick = page2;
+    }
+
+    /* ===== PAGE 2 – Distance Memo ===== */
     function page2() {
       card.innerHTML = `
         <h1>Я знаю, що ми далеко… 🤍</h1>
@@ -168,13 +158,13 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = page3;
     }
 
-    // ===== PAGE 3 – Missing Memo =====
+    /* ===== PAGE 3 – Missing Memo ===== */
     function page3() {
       card.innerHTML = `
         <h1>When you miss me… 💌</h1>
         <div class="memo">
           I’m thinking about you right now.<br><br>
-          Close your eyes and breathe i love you so much and yiu know I’m there and everywhere .<br>
+          Close your eyes and breath i love you so much and yiu know I’m there and everywhere .<br>
           You’re safe with me.<br>
           Distance can’t stop what’s real.<br>
           Even when I’m not next to you, my heart never leaves you.
@@ -184,7 +174,7 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = page4;
     }
 
-    // ===== PAGE 4 – Tap Heart =====
+    /* ===== PAGE 4 – Tap Heart ===== */
     function page4() {
       let clicks = 0;
       card.innerHTML = `
@@ -199,7 +189,7 @@ document.getElementById("trustBtn").onclick = page1;
       };
     }
 
-    // ===== PAGE 5 – Long Memo =====
+    /* ===== PAGE 5 – Long Memo (FULL like you wrote) ===== */
     function page5() {
       card.innerHTML = `
         <h1>From my heart 🤍</h1>
@@ -212,7 +202,6 @@ document.getElementById("trustBtn").onclick = page1;
           She always says: “Are you talking to your cheeks?” and sometimes I even get jealous because she likes you 😂😂😂<br><br>
           She always tells me that I will love my wife more than her, and I laugh because I’m 27 and she never pushed me to marry.<br><br>
           And now… back to you.<br><br>
-          i always keep thinking about uou and end up lauguing when u remeber things we laugh about i love the way you are so much even sometime you mind fuck our vibe ahahaha but that s you i wont complaint about that you are amazimg and the way you are .<br>
           It’s Valentine’s Day. I honestly wanted to buy you something because you deserve everything, but my budget is low.<br>
           I promise I’ll do it later. You deserve something that keeps me in your mind (even though I know I’m always there).<br><br>
           I know there is a little kid inside you that needs love and care, and I’m truly trying to take care of you even from far away.<br><br>
@@ -237,37 +226,47 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = pageQuiet;
     }
 
+    /* ===== PAGE QUIET (FULL like you wrote) ===== */
     function pageQuiet() {
       card.innerHTML = `
         <h1>You don’t need to do anything 🤍</h1>
+
         <div class="memo">
           You don’t need to click.<br><br>
           You don’t need to choose.<br><br>
           You don’t need to be strong right now.<br><br><br>
+
           This page exists only to remind you<br>
           that you are loved<br>
           without conditions,<br>
           without effort,<br>
           without distance.<br><br>
+
           If you feel tired, stay here.<br><br>
           I’m not asking for anything.<br><br>
           I’m just here.
         </div>
+
         <hr style="margin:30px 0;opacity:0.2">
+
         <div class="memo">
           I’m not trying to impress you.<br><br>
           I’m not trying to be romantic.<br><br>
           I’m not trying to be perfect.<br><br>
           I’m not trying to win you.<br><br><br>
+
           I already chose you.<br><br>
           Every day.<br><br>
           Even when it’s quiet.
         </div>
+
         <button id="nextBtn" style="margin-top:25px">Continue →</button>
       `;
+
       document.getElementById("nextBtn").onclick = page6;
     }
 
+    /* ===== PAGE 6 – Choose Message (FULL like you wrote) ===== */
     function page6() {
       card.innerHTML = `
         <h1>Choose what you need right now 💌</h1>
@@ -280,26 +279,30 @@ document.getElementById("trustBtn").onclick = page1;
       `;
 
       const texts = {
-        comfort: `I wish I could wrap you in my arms right now.<br><br>You don’t have to be strong.`,
-        love: `You are deeply loved.<br><br>More than words. More than distance.`,
-        hope: `Everything we’re waiting for will make sense one day.<br><br>This isn’t the end.`
+        comfort:`I wish I could wrap you in my arms right now.<br><br>You don’t have to be strong.`,
+        love:`You are deeply loved.<br><br>More than words. More than distance.`,
+        hope:`Everything we’re waiting for will make sense one day.<br><br>This isn’t the end.`
       };
 
-      document.querySelectorAll(".choice").forEach(btn => {
-        btn.onclick = () => {
-          const box = document.getElementById("result");
+      document.querySelectorAll(".choice").forEach(btn=>{
+        btn.onclick=()=>{
+          const box=document.getElementById("result");
           box.innerHTML = texts[btn.dataset.msg];
-          box.style.display = "block";
+          box.style.display="block";
 
+          // remove old main button if exists
           const old = document.querySelector(".mainBtn");
           if (old) old.remove();
 
-          box.insertAdjacentHTML("afterend", `<button class="mainBtn">Always you 🤍</button>`);
+          // Each choice gets its own "Always you" button
+          box.insertAdjacentHTML("afterend",
+            `<button class="mainBtn">Always you 🤍</button>`);
           document.querySelector(".mainBtn").onclick = page7;
-        };
+        }
       });
     }
 
+    /* ===== PAGE 7 – Final Choice (FULL like you wrote) ===== */
     function page7() {
       card.innerHTML = `
         <h1>A promise 🤍</h1>
@@ -314,6 +317,7 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = pageAppreciation;
     }
 
+    /* ===== PAGE 8 – Things I don’t say enough (FULL like you wrote) ===== */
     function pageAppreciation() {
       card.innerHTML = `
         <h1>Things I don’t say enough 🤍</h1>
@@ -328,27 +332,30 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = pageFinal;
     }
 
-  function pageFinal() {
-  clearInterval(heartInterval);
+    /* ===== FINAL PAGE (FULL like you wrote) ===== */
+    function pageFinal() {
+      clearInterval(heartInterval);
 
-  card.innerHTML = `
-    <h1 style="font-size:26px">
-      Distance didn’t stop us.<br>
-      And it won’t stop us. ❤️
-    </h1>
-    <p style="margin-top:15px; font-size:18px; color:#ff5f9e;">
-      Happy Valentine Bunny, I love you 💖 Muwah
-    </p>
+      card.innerHTML = `
+        <h1 style="font-size:26px">
+          Distance didn’t stop us.<br>
+          And it won’t stop us. ❤️
+        </h1>
+        <p style="margin-top:15px; font-size:18px; color:#ff5f9e;">
+          Happy Valentine Bunny, I love you 💖 Muwah
+        </p>
 
-    <button id="stopBtn" style="margin-top:18px">Stop music 🔇</button>
-  `;
+        <button id="stopBtn" style="margin-top:18px">Stop music 🔇</button>
+      `;
 
-  document.getElementById("stopBtn").onclick = () => {
-    if (music) {
-      music.pause();
-      music.currentTime = 0;
+      document.getElementById("stopBtn").onclick = () => {
+        if (music) {
+          music.pause();
+          music.currentTime = 0;
+        }
+      };
     }
-  };
-}
+
   });
+
 })();
