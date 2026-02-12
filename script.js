@@ -113,7 +113,7 @@ document.getElementById("trustBtn").onclick = page1;
       document.getElementById("nextBtn").onclick = page1;
     }
 
-    function pageYes() {
+  function pageYes() {
   card.innerHTML = `
     <img src="cat-love.gif" style="width:240px;"><br><br>
     <h1>
@@ -124,29 +124,24 @@ document.getElementById("trustBtn").onclick = page1;
 
     <div class="volume-wrap">
       <span>🔊</span>
-      <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.7">
+      <input id="volSlider" type="range" min="0" max="1" step="0.01" value="${savedVolume}">
     </div>
 
     <button id="continueBtn">Continue →</button>
   `;
 
-  // MUSIC start on YES
   if (music) {
     music.currentTime = 0;
     music.muted = false;
-    music.volume = 0.7;
+    music.volume = savedVolume;
 
-    music.play().catch(() => {
-      // إذا تعطل autoplay لأي سبب، ماشي مشكلة
+    music.play().catch(() => {});
+
+    const slider = document.getElementById("volSlider");
+    slider.addEventListener("input", () => {
+      savedVolume = parseFloat(slider.value);
+      music.volume = savedVolume;
     });
-
-    // volume slider control
-   const slider = document.getElementById("volSlider");
-
-slider.addEventListener("input", () => {
-  savedVolume = parseFloat(slider.value);  // هنا تتحط
-  music.volume = savedVolume;
-});
   }
 
   clearInterval(heartInterval);
