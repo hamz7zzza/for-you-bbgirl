@@ -23,7 +23,8 @@
 
     let forcedNoStage = 0;
     let heartInterval;
-
+    let savedVolume = 0.7;
+    
     function createHeart() {
       const el = document.createElement("div");
       el.className = "fall";
@@ -120,46 +121,32 @@ document.getElementById("trustBtn").onclick = page1;
       That’s my good girl 😌❤️<br>
       I love you forever 💕
     </h1>
+
+    <div class="volume-wrap">
+      <span>🔊</span>
+      <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.7">
+    </div>
+
     <button id="continueBtn">Continue →</button>
   `;
 
-  // MUSIC (strong play + fallback)
+  // MUSIC start on YES
   if (music) {
     music.currentTime = 0;
     music.muted = false;
-    music.volume = 0;
+    music.volume = 0.7;
 
-    const tryPlay = () => {
-      return music.play().then(() => {
-        const fade = setInterval(() => {
-          if (music.volume < 0.7) {
-            music.volume = Math.min(0.7, music.volume + 0.05);
-          } else {
-            clearInterval(fade);
-          }
-        }, 200);
-      });
-    };
-
-    tryPlay().catch(() => {
-      const btn = document.createElement("button");
-      btn.textContent = "Tap to unmute 🎵";
-      btn.style.marginTop = "12px";
-      card.appendChild(btn);
-
-      btn.onclick = () => {
-        tryPlay().then(() => btn.remove()).catch(() => {});
-      };
+    music.play().catch(() => {
+      // إذا تعطل autoplay لأي سبب، ماشي مشكلة
     });
 
-    music.addEventListener("error", () => {
-      const errBox = document.createElement("div");
-      errBox.className = "memo";
-      errBox.style.marginTop = "12px";
-      errBox.style.color = "#ff3b7a";
-      errBox.innerHTML = "⚠️ Song file not loading (check song.mp3 name/path/format).";
-      card.appendChild(errBox);
-    }, { once: true });
+    // volume slider control
+   const slider = document.getElementById("volSlider");
+
+slider.addEventListener("input", () => {
+  savedVolume = parseFloat(slider.value);  // هنا تتحط
+  music.volume = savedVolume;
+});
   }
 
   clearInterval(heartInterval);
@@ -167,7 +154,6 @@ document.getElementById("trustBtn").onclick = page1;
 
   document.getElementById("continueBtn").onclick = page2;
 }
-
     // ===== PAGE 2 – Distance Memo =====
     function page2() {
       card.innerHTML = `
