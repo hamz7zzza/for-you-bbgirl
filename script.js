@@ -105,14 +105,14 @@
         <button id="continueBtn">Continue →</button>
       `;
 
-      // Start music on YES (loop + keep playing)
+      // Start music on YES
       if (music) {
         music.currentTime = 0;
         music.muted = false;
         music.loop = true;
-        music.volume = 0;
 
-        // Try play then fade in
+        // fade in to savedVolume
+        music.volume = 0;
         music.play().then(() => {
           const fade = setInterval(() => {
             if (music.volume < savedVolume) {
@@ -121,9 +121,7 @@
               clearInterval(fade);
             }
           }, 200);
-        }).catch(() => {
-          // If blocked for any reason, keep silent (no crash)
-        });
+        }).catch(() => {});
 
         const slider = document.getElementById("volSlider");
         slider.addEventListener("input", () => {
@@ -132,6 +130,7 @@
         });
       }
 
+      // Hearts start on YES
       clearInterval(heartInterval);
       heartInterval = setInterval(createHeart, 90);
 
@@ -189,7 +188,7 @@
       };
     }
 
-    /* ===== PAGE 5 – Long Memo (FULL like you wrote) ===== */
+    /* ===== PAGE 5 – Long Memo (FULL) ===== */
     function page5() {
       card.innerHTML = `
         <h1>From my heart 🤍</h1>
@@ -223,10 +222,24 @@
         </div>
         <button id="nextBtn">Continue →</button>
       `;
+      document.getElementById("nextBtn").onclick = pageCatKiss;
+    }
+
+    /* ===== KISS CAT PAGE (NEW) ===== */
+    function pageCatKiss() {
+      card.innerHTML = `
+        <h1>Muwah 💋</h1>
+        <img src="catkiss.gif" class="val-img" style="margin-top:12px;">
+        <div class="memo" style="margin-top:16px">
+          Come here… just one kiss 😚<br><br>
+          I love you.
+        </div>
+        <button id="nextBtn" style="margin-top:18px">Continue →</button>
+      `;
       document.getElementById("nextBtn").onclick = pageQuiet;
     }
 
-    /* ===== PAGE QUIET (FULL like you wrote) ===== */
+    /* ===== PAGE QUIET (FULL) ===== */
     function pageQuiet() {
       card.innerHTML = `
         <h1>You don’t need to do anything 🤍</h1>
@@ -266,15 +279,19 @@
       document.getElementById("nextBtn").onclick = page6;
     }
 
-    /* ===== PAGE 6 – Choose Message (FULL like you wrote) ===== */
+    /* ===== PAGE 6 – Choose (WHITE FLOWER ON TOP) ===== */
     function page6() {
       card.innerHTML = `
         <h1>Choose what you need right now 💌</h1>
+
+        <img src="whiteflower.jpg" class="val-img" style="margin-top:10px;">
+
         <div class="choices">
           <button class="choice" data-msg="comfort">Comfort 🤍</button>
           <button class="choice" data-msg="love">Love ❤️</button>
           <button class="choice" data-msg="hope">Hope 🌟</button>
         </div>
+
         <div id="result" class="memo" style="display:none;margin-top:20px;"></div>
       `;
 
@@ -290,19 +307,16 @@
           box.innerHTML = texts[btn.dataset.msg];
           box.style.display="block";
 
-          // remove old main button if exists
           const old = document.querySelector(".mainBtn");
           if (old) old.remove();
 
-          // Each choice gets its own "Always you" button
-          box.insertAdjacentHTML("afterend",
-            `<button class="mainBtn">Always you 🤍</button>`);
+          box.insertAdjacentHTML("afterend", `<button class="mainBtn">Always you 🤍</button>`);
           document.querySelector(".mainBtn").onclick = page7;
         }
       });
     }
 
-    /* ===== PAGE 7 – Final Choice (FULL like you wrote) ===== */
+    /* ===== PAGE 7 – A promise ===== */
     function page7() {
       card.innerHTML = `
         <h1>A promise 🤍</h1>
@@ -314,10 +328,31 @@
         </div>
         <button id="nextBtn">Continue →</button>
       `;
+      document.getElementById("nextBtn").onclick = pageFlowersGift;
+    }
+
+    /* ===== FLOWERS PAGE (TWO BOUQUETS + MESSAGE) ===== */
+    function pageFlowersGift() {
+      card.innerHTML = `
+        <h1>Flowers for you 🌷</h1>
+
+        <img src="hugebouquet.jpg" class="val-img" style="margin-top:10px;">
+        <img src="pinkbouquet.jpg" class="val-img" style="margin-top:12px;">
+
+        <div class="memo" style="margin-top:18px">
+          cuz i’m not there to give you flowers…<br><br>
+          those are for you baby girl 💖<br><br>
+          but i promise you I’m gonna be there<br>
+          and give it to you face to face
+        </div>
+
+        <button id="nextBtn" style="margin-top:18px">Continue →</button>
+      `;
+
       document.getElementById("nextBtn").onclick = pageAppreciation;
     }
 
-    /* ===== PAGE 8 – Things I don’t say enough (FULL like you wrote) ===== */
+    /* ===== PAGE 8 – Things I don’t say enough ===== */
     function pageAppreciation() {
       card.innerHTML = `
         <h1>Things I don’t say enough 🤍</h1>
@@ -332,7 +367,7 @@
       document.getElementById("nextBtn").onclick = pageFinal;
     }
 
-    /* ===== FINAL PAGE (FULL like you wrote) ===== */
+    /* ===== FINAL PAGE ===== */
     function pageFinal() {
       clearInterval(heartInterval);
 
